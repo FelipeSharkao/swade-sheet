@@ -1,3 +1,5 @@
-<script lang="ts"></script>
+<script lang="ts">
+  import Attributes from './Attributes.svelte'
+</script>
 
-<h1>SWADE</h1>
+<Attributes />
