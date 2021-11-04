@@ -1,6 +1,7 @@
 import { derived, writable } from 'svelte/store'
 
 import attrs from './attributes'
+import skills from './skills'
 
 export const maxAttrPts = writable(5)
 export const spentAttrPts = derived(
@@ -9,5 +10,28 @@ export const spentAttrPts = derived(
 )
 export const unspentAttrPts = derived(
   [spentAttrPts, maxAttrPts],
+  ([$spent, $max]) => $max - $spent
+)
+
+export const maxSkillPts = writable(12)
+export const spentSkillPts = derived(
+  Object.values(skills).map(skill =>
+    derived(
+      [skill.raises, skill.attribute.raises],
+      ([$raises, $attrRaises]) => {
+        const $dice = $raises ?? 0
+        return (
+          ($dice <= $attrRaises
+            ? $dice
+            : $attrRaises + ($dice - $attrRaises) * 2) +
+          (!skill.isCore && $raises != null ? 1 : 0)
+        )
+      }
+    )
+  ),
+  ptsArray => ptsArray.reduce((acc, $pts) => acc + $pts, 0)
+)
+export const unspentSkillPts = derived(
+  [spentSkillPts, maxSkillPts],
   ([$spent, $max]) => $max - $spent
 )

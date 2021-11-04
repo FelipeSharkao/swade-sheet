@@ -1,4 +1,4 @@
-import Attribute from '../models/trait'
+import Attribute from '../models/trait/attribute'
 import { d4 } from '../utils/dice'
 
 const attrs = Object.fromEntries(
