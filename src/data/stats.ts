@@ -35,3 +35,18 @@ export const unspentSkillPts = derived(
   [spentSkillPts, maxSkillPts],
   ([$spent, $max]) => $max - $spent
 )
+
+export const armor = writable(0)
+
+export const parryMod = writable(0)
+export const toughnessMod = writable(0)
+
+export const parry = derived(
+  [skills.fighting.dice, parryMod],
+  ([$dice, $parryMod]) => ($dice ? $dice.half : 2) + $parryMod + 2
+)
+
+export const toughness = derived(
+  [attrs.vig.dice, toughnessMod, armor],
+  ([$dice, $toughnessMod, $armor]) => $dice.half + $toughnessMod + $armor + 2
+)
