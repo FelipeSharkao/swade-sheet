@@ -1,10 +1,10 @@
-import type Mod from './mod'
+import type Ability from './ability'
 
 export default class Race {
   readonly name: string
-  readonly mods: Mod[]
+  readonly mods: Ability[]
 
-  constructor(name: string, mods: Mod[]) {
+  constructor(name: string, mods: Ability[]) {
     this.name = name
     this.mods = mods
   }

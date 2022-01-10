@@ -3,7 +3,7 @@ export interface Effect {
   readonly unregister: () => void
 }
 
-export default class Mod {
+export default class Ability {
   readonly name: string
   readonly description: string
   protected readonly effect: Effect

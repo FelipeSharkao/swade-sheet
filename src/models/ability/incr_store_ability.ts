@@ -1,7 +1,7 @@
 import type { Writable } from 'svelte/store'
-import Mod from './'
+import Ability from './'
 
-export default class IncrStoreMod extends Mod {
+export default class IncrStoreAbility extends Ability {
   constructor(
     name: string,
     description: string,
