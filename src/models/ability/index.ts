@@ -4,21 +4,17 @@ export interface Effect {
 }
 
 export default class Ability {
-  readonly name: string
-  readonly description: string
-  protected readonly effect: Effect
-
-  constructor(name: string, description: string, effect: Effect) {
-    this.name = name
-    this.description = description
-    this.effect = effect
-  }
+  constructor(
+    readonly name: string,
+    readonly description: string,
+    protected readonly effect?: Effect
+  ) {}
 
   register() {
-    this.effect.register()
+    this.effect?.register()
   }
 
   unregister() {
-    this.effect.unregister()
+    this.effect?.unregister()
   }
 }
