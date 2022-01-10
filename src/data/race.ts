@@ -1,93 +1,42 @@
-import { d4, d6 } from '../utils/dice'
-import Race from '../models/race'
 import { Readable, writable } from 'svelte/store'
 
+import IncrStoreMod from '../models/mod/incr_store_mod'
+import RaiseTraitMod from '../models/mod/raise_trait_mod'
+import Race from '../models/race'
 import attrs from './attributes'
-import Mod from '../models/mod'
-import { armor, toughnessMod } from './stats'
 import skills from './skills'
+import { armor, toughnessMod } from './stats'
 
+import type Mod from '../models/mod'
 export const racialAbilities: Record<string, Mod> = {
-  agile: new Mod(
+  agile: new RaiseTraitMod(
     'Agile',
     'Start with a d6 Agility, instead of a d4. This increases maximum Agility to d12+1.',
-    {
-      register() {
-        attrs.agi.initial.set(d6)
-        attrs.agi.dice.update($dice => $dice.next)
-      },
-      unregister() {
-        attrs.agi.initial.set(d4)
-        attrs.agi.dice.update($dice => $dice.prev)
-      },
-    }
+    attrs.agi
   ),
-  frail: new Mod('Frail', 'Apply -1 to Toughness', {
-    register() {
-      toughnessMod.update($mod => $mod - 1)
-    },
-    unregister() {
-      toughnessMod.update($mod => $mod + 1)
-    },
-  }),
-  keenSenses: new Mod(
+  frail: new IncrStoreMod('Frail', 'Apply -1 to Toughness', toughnessMod, -1),
+  keenSenses: new RaiseTraitMod(
     'Keen Senses',
     'Start with a d6 in Notice, instead of d4. This increases maximum Notice to d12+1.',
-    {
-      register() {
-        skills.notice.initial.set(d6)
-        skills.notice.dice.update($dice => $dice && $dice.next)
-      },
-      unregister() {
-        skills.notice.initial.set(d4)
-        skills.notice.dice.update($dice => $dice && $dice.prev)
-      },
-    }
+    skills.notice
   ),
-  spirited: new Mod(
+  spirited: new RaiseTraitMod(
     'Spirited',
     'Start with a d6 Spirit, instead of a d4. This increases maximum Spirit to d12+1.',
-    {
-      register() {
-        attrs.spi.initial.set(d6)
-        attrs.spi.dice.update($dice => $dice.next)
-      },
-      unregister() {
-        attrs.spi.initial.set(d4)
-        attrs.spi.dice.update($dice => $dice.prev)
-      },
-    }
+    attrs.spi
   ),
-  tough: new Mod(
+  tough: new RaiseTraitMod(
     'Tough',
     'Start with a d6 Vigor, instead of a d4. This increases maximum Vigor to d12+1.',
-    {
-      register() {
-        attrs.vig.initial.set(d6)
-        attrs.vig.dice.update($dice => $dice.next)
-      },
-      unregister() {
-        attrs.vig.initial.set(d4)
-        attrs.vig.dice.update($dice => $dice.prev)
-      },
-    }
+    attrs.vig
   ),
-  toughness: new Mod('Toughness', 'Apply +1 to Toughness', {
-    register() {
-      toughnessMod.update($mod => $mod + 1)
-    },
-    unregister() {
-      toughnessMod.update($mod => $mod - 1)
-    },
-  }),
-  armor2: new Mod('Armor +2', 'Apply +2 to Armor', {
-    register() {
-      armor.update($armor => $armor + 2)
-    },
-    unregister() {
-      armor.update($armor => $armor - 2)
-    },
-  }),
+  toughness: new IncrStoreMod(
+    'Toughness',
+    'Apply +1 to Toughness',
+    toughnessMod,
+    1
+  ),
+  armor2: new IncrStoreMod('Armor +2', 'Apply +2 to Armor', armor, 2),
 }
 
 const ablt = racialAbilities
