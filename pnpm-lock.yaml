@@ -2,6 +2,7 @@ lockfileVersion: 5.3
 
 specifiers:
   '@babel/core': ^7.15.8
+  '@picocss/pico': ^1.4.3
   '@rollup/plugin-babel': ^5.3.0
   '@rollup/plugin-commonjs': ^17.0.0
   '@rollup/plugin-node-resolve': ^11.0.0
@@ -21,6 +22,7 @@ specifiers:
   typescript: 4.3.5
 
 dependencies:
+  '@picocss/pico': 1.4.3
   sirv-cli: 1.0.14
 
 devDependencies:
@@ -277,6 +279,10 @@ packages:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.13.0
     dev: true
+
+  /@picocss/pico/1.4.3:
+    resolution: {integrity: sha512-tKQAYkyk24qTbnwgbFvtytnwr/D/BpIwAiQsFq5GIXGKvTpW+JSfJa7jv7Ovn92zwUMnr9mWtdvzijtdjX4WHg==}
+    dev: false
 
   /@polka/url/1.0.0-next.21:
     resolution: {integrity: sha512-a5Sab1C4/icpTZVzZc5Ghpz88yQtGOyNqYXcZgOssB2uuAr+wF/MvN6bgtW32q7HHrvBki+BsZ0OuNv6EV3K9g==}
