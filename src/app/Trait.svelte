@@ -50,6 +50,7 @@
 <style lang="stylus">
   td
     padding 0.4em
+    white-space nowrap
 
     &.under-attr
       color #0b0

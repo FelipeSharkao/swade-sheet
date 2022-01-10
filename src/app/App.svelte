@@ -6,8 +6,11 @@
   import Skills from './Skills.svelte'
 </script>
 
-<Race />
-
-<Attributes />
-<h4>Parry: <b>{$parry}</b>{'  |  '}Toghness: <b>{$toughness}</b></h4>
-<Skills />
+<main class="container">
+  <Race />
+  <h4>Parry: <b>{$parry}</b>{'  |  '}Toghness: <b>{$toughness}</b></h4>
+  <div class="grid">
+    <Attributes />
+    <Skills />
+  </div>
+</main>
