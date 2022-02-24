@@ -28,6 +28,7 @@
     "typescript": "4.3.5"
   },
   "dependencies": {
+    "@picocss/pico": "^1.4.3",
     "sirv-cli": "^1.0.0"
   }
 }
